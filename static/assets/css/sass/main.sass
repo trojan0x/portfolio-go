@@ -1,0 +1,431 @@
+@import "basics"
+@import "grid"
+
+@import url(https://fonts.googleapis.com/css?family=Asap:400,700,400italic,700italic)
+
+html, body
+  height: 100%
+  font-family: Asap, sans-serif
+  font-size: 16px
+
+*
+  outline: none
+  @include box-sizing(border-box)
+
+body
+  padding: 0px
+  margin: 0px
+  background-image: url("../img/bg.png")
+  background-position: 0 top
+
+  header
+    position: fixed
+    z-index: 10
+    height: 60px
+    width: 100%
+    line-height: 60px
+    color: white
+
+    @include transition(all .2s ease-in)
+
+    &.white
+      background-color: rgba(0, 0, 0, 0.7)
+      @include box-shadow(0, 2px, 2px, rgba(0,0,0,0.2))
+
+    div.container
+      position: relative
+
+    h1.brand
+      margin: 0px
+      padding: 0 0 0 5px
+      font-size: em(34px)
+
+    nav
+      position: absolute
+      height: 40px
+      top: 0px
+      right: 10px
+      text-align: right
+
+      ul
+        list-style-type: none
+        margin: 0px
+        padding: 0px
+
+        li
+          display: inline-block
+          margin: 0px
+          height: 36px
+          line-height: 36px
+
+          a
+            padding: 0 18px
+            display: block
+            text-decoration: none
+            color: white
+            @include border-radius(4px)
+
+            &:hover
+              padding: 0 16px
+              font-weight: bold
+              border: 2px solid #FFF
+
+            &:active, &.active
+              background-color: white
+              color: black
+              padding: 0 16px
+              border: 2px solid #FFF
+              font-weight: bold
+
+  article
+    padding: 10px
+
+    h2
+      font-size: em(32px, 16px)
+      text-align: center
+      margin: 40px 0
+
+      span.comment
+        color: #aaa
+        font-weight: 400
+
+      span.cursor
+        z-index: 2
+        font-weight: 400
+        color: #AAA
+        vertical-align: 1px
+        display: inline-block
+        @include animation(blink 1s steps(5, start) infinite)
+
+    &#welcome
+      min-height: 100%
+      text-align: center
+      position: relative
+      -webkit-transform: translate3d(0,0,0)
+      background-image: url("../img/welcome.jpg")
+      background-repeat: no-repeat
+      background-position: center center
+      background-size: cover
+      -webkit-background-size: cover
+      -moz-background-size: cover
+      -o-background-size: cover
+
+      div.bottom-wrapper
+        width: 100%
+        height: 300px
+        left: 0px
+        bottom: -120px
+        position: absolute
+        overflow: hidden
+
+        div.bottom
+          position: absolute
+          left: -50px
+          top: 100px
+          right: 0px
+          height: 200px
+          width: 110%
+          @include transform(rotate(-4deg))
+          -webkit-backface-visibility: hidden
+          overflow: hidden
+
+          div.bg
+            margin-top: -102px
+            background-image: url("../img/bg.png")
+            background-position: 57px 20px
+            height: 100%
+            @include transform(rotate(4deg))
+
+      div#intro-text
+        height: 150px
+        margin-top: -75px
+        position: absolute
+        top: 50%
+        left: 0px
+        right: 0px
+        font-size: em(40px)
+        font-weight: bold
+        color: #CCC
+        @include text-shadow(0,1px,5px)
+
+        span.write
+          color: white
+          padding: 0 4px
+          margin: 0 -2px
+
+        span.love
+          color: #E01A20
+
+        &.selected
+          span.write
+            background-color: rgba(0,0,0,0.6)
+            color: white
+
+          span.cursor
+            @include opacity(0)
+
+          span.before-cursor
+            @include opacity(1)
+
+        span.cursor, span.before-cursor
+          position: relative
+          z-index: 2
+          font-weight: 400
+          margin-top: -6px
+          color: white
+          font-size: em(49px, 40px)
+          vertical-align: -1px
+          display: inline-block
+          @include animation(blink 1s steps(5, start) infinite)
+
+        span.cursor
+          margin-left: -2px
+          margin-right: -6px
+
+        span.before-cursor
+          @include opacity(0)
+          margin-left: -6px
+          margin-right: -4px
+
+    &#about-me
+      position: relative
+      z-index: 1
+      margin-top: -50px
+
+      div.profile-image
+        margin: 50px auto
+        width: 200px
+
+        div.image
+          width: 100%
+          padding: 10px
+          background-color: white
+          @include border-radius(50%)
+          line-height: 0px
+
+          img
+            width: 100%
+            @include border-radius(50%)
+
+      p
+        max-width: 500px
+        text-align: center
+        line-height: 1.5em
+        margin: 10px auto 20px
+
+    &#skills
+      div.skills
+        width: 160px*6
+        margin: 0 auto
+
+        div.skill
+          position: relative
+          text-align: center
+          width: 140px
+          height: 140px
+          margin: 10px
+          float: left
+          padding: 50px 0
+          line-height: 20px
+
+          span
+            display: block
+            &.name
+              font-weight: 700
+              color: #444
+
+            &.percent
+              color: #AAA
+
+          canvas
+            position: absolute
+            top: 0px
+            left: 0px
+            width: 100%
+            height: 100%
+
+    &#works
+      overflow: hidden
+
+      div.block-wrapper
+        @include transition(all .6s ease-in)
+        -webkit-backface-visibility: hidden
+        width: 100%
+
+        &:nth-child(even)
+          @include transform(rotate(8deg))
+          margin-left: -100%
+
+        &:nth-child(odd)
+          @include transform(rotate(-8deg))
+          margin-left: 100%
+
+        &.in
+          @include transform(rotate(0))
+          margin-left: 0%
+
+        div.block
+          margin: 30px auto 20px
+          width: calc(90% - 10px)
+          max-width: 600px
+          padding: 10px 25px 20px
+          position: relative
+          background-color: white
+          border: 1px solid #CCC
+          @include box-shadow(0,1px,6px,rgba(0,0,0,.2))
+
+          &:after
+            display: block
+            content: ''
+            clear: both
+
+          h3.work
+            text-align: center
+            border-bottom: 2px solid #DDD
+            padding-bottom: 20px
+            font-weight: 200, 1px, 10px, 10
+            text-transform: uppercase
+            font-weight: 200
+
+          div.description
+            text-align: justify
+            line-height: 2em
+            padding: 0 10px
+            color: #555
+
+            a, &:visited
+              text-decoration: none
+              color: black
+
+              &.github
+                display: block
+                background-color: #EEE
+                color: #444
+                text-align: center
+                margin: 10px 0
+
+                &:hover
+                  background-color: #000
+                  color: white
+
+              &:hover
+                color: black
+
+
+          div.details
+            text-align: center
+            margin-bottom: 20px
+            padding-bottom: 20px
+            border-bottom: 2px solid #DDD
+            text-transform: uppercase
+            font-size: 0.8em
+
+            span
+              display: block
+              color: #555
+              font-weight: 200
+              line-height: 2em
+              padding: 0
+
+              a, &:visited
+                text-decoration: none
+                color: black
+                &:hover
+                  text-decoration: underline
+
+              i
+                vertical-align: 1px
+                padding: 0 5px 0 0
+                color: #000
+
+    &#get-in-touch
+      height: calc(90% - 60px)
+      position: relative
+      text-align: center
+
+      div#contact-form-wrapper
+        height: 100%
+        width: 100%
+
+        div#contact-form-fixv
+          display: inline-block
+          height: 100%
+          width: 1px
+          vertical-align: middle
+
+        div#contact-form
+          display: inline-block
+          vertical-align: middle
+          width: calc(100% - 20px)
+          text-align: center
+          padding: 30px 0
+
+          div.status
+            width: 80%
+            padding: 10px
+            line-height: 1.5em
+            max-width: 500px
+            margin: 10px auto
+            border: 0px
+            @include box-shadow(0,1px,6px,rgba(0,0,0,.2))
+            background-color: #30CC61
+            color: white
+
+            &.error
+              background-color: #DC242D
+
+              a
+                color: white
+
+          form
+            div.error
+              width: 80%
+              line-height: 1.2em
+              max-width: 500px
+              text-align: right
+              color: #DC242D
+              margin: 2px auto
+
+          input, textarea
+            display: block
+            width: 80%
+            padding: 10px
+            line-height: 1.5em
+            max-width: 500px
+            margin: 10px auto
+            border: 0px
+            @include box-shadow(0,1px,6px,rgba(0,0,0,.2))
+
+            &.error
+              border: 2px solid #DC242D
+
+          textarea
+            height: 200px
+
+          button
+            display: block
+            width: 80%
+            padding: 10px
+            line-height: 1.5em
+            max-width: 500px
+            margin: 20px auto 0
+            border: 0px
+            background-color: #0082DC
+            color: white
+            @include box-shadow(0,1px,6px,rgba(0,0,0,.2))
+
+            &:hover
+              background-color: lighten(#0082DC, 5%)
+
+.clear
+  clear: both
+
+.link_anchor
+  position: absolute
+  margin-top: -50px
+
+@include keyframes(blink)
+  to
+    visibility: hidden
+
+@import "mobile"

@@ -1,0 +1,57 @@
+@function em($target, $context: 16px)
+  @return ($target / $context) * 1em
+
+@mixin css3-prefix($property, $value)
+  -webkit-#{$property}: #{$value}
+  -khtml-#{$property}: #{$value}
+  -moz-#{$property}: #{$value}
+  -ms-#{$property}: #{$value}
+  -o-#{$property}: #{$value}
+  #{$property}: #{$value}
+
+@mixin box-sizing($v: border-box)
+  @include css3-prefix('box-sizing', $v)
+
+@mixin transform($t)
+  @include css3-prefix('transform', $t)
+
+@mixin opacity($opacity: 0)
+  @include css3-prefix('opacity', $opacity)
+  $opacity-ie: $opacity * 100
+  filter: alpha(opacity=$opacity-ie)
+
+@mixin box-shadow($x: 0, $y: 0, $blur: 2px, $color: rgba(0,0,0,.4), $inset: '')
+  @if ($inset != "")
+    @include css3-prefix('box-shadow', $inset $x $y $blur $color)
+  @else
+    @include css3-prefix('box-shadow', $x $y $blur $color)
+
+/* TRANSITION */
+@mixin transition($properties...)
+  @if length($properties) >= 1
+    @include css3-prefix('transition', $properties)
+  @else
+    @include css3-prefix('transition', $what: all, $length: 1s, $easing: ease-in-out)
+
+@mixin animation($animation)
+  @include css3-prefix('animation', $animation)
+
+@mixin border-radius($radius: 2px)
+  @include css3-prefix('border-radius', $radius)
+
+@mixin text-shadow($x: 2px, $y: 2px, $blur: 5px, $color: rgba(0,0,0,.4))
+  text-shadow: $x $y $blur $color
+
+@mixin keyframes($animation)
+  @-webkit-keyframes #{$animation}
+    $browser: '-webkit-'
+    @content
+  @-moz-keyframes #{$animation}
+    $browser: '-moz-'
+    @content
+  @-o-keyframes #{$animation}
+    $browser: '-o-'
+    @content
+  @keyframes #{$animation}
+    $browser: ''
+    @content

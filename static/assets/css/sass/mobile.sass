@@ -1,0 +1,28 @@
+$break-mobile: 360px
+$break-tablet: 768px
+
+@media screen and (max-width: $break-tablet)
+  body
+    overflow-x: hidden
+
+  h1.brand
+    text-align: center
+
+  ul#navigation
+    display: none
+
+  article#welcome
+    div.bottom-wrapper
+      div.bottom
+        width: 130% !important
+
+  article#skills
+    div.skills
+      width: 100% !important
+      text-align: center !important
+
+      div.skill
+        float: none !important
+        display: inline-block
+        width: 140px !important
+        height: 140px !important
