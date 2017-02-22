@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="assets/css/normalize.css">
     <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   </head>
   <body>
     <!-- Github -->
@@ -282,18 +283,19 @@
       <div id="contact-form-wrapper">
         <div id="contact-form-fixv"></div>
         <div id="contact-form">
-          <div class="status" style="display: none;">
-            <div class="success" style="display: none;">
+          <div>
+            <div class="status success" id="contact-success" style="display: none;">
               Your message has been sent, I'll reply as soon as possible
             </div>
-            <div class="error" style="display: none;">
-              Sorry, but some error has been ocurred.
+            <div class="status error" id="contact-error" style="display: none;">
+              Sorry, but some error has been ocurred. Try again
             </div>
           </div>
           <form method="POST" enctype="application/x-www-form-urlencoded" action="/send-mail" id="contact-form-element">
             <input type="text" name="name" id="name-input" placeholder="Name">
             <input type="text" name="email" id="email-input" placeholder="E-mail">
             <textarea name="message" id="message-input" placeholder="message"></textarea>
+            <div class="g-recaptcha" style="margin: 20px auto 10px; width: 300px" data-sitekey="6Lc-chYUAAAAAFyOP4WDfrvK-AnVU7SrFQ5Ign8E"></div>
             <button type="submit">Send message</button>
           </form>
         </div>

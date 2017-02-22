@@ -177,6 +177,23 @@ contactForm.addEventListener('submit', function(ev) {
     method: 'POST',
     body: new FormData(contactForm),
   }).then(function(response) {
-    console.log(response);
+    grecaptcha.reset();
+    if (response.ok) {
+      document.getElementById('contact-form-element').style.display = 'none';
+      document.getElementById('contact-success').style.display = 'block';
+    } else {
+      document.getElementById('contact-error').style.display = 'block';
+      switch (response.status) {
+        case 400:
+          console.error('Bad Request');
+          break;
+        case 429:
+          console.error('Too many requests');
+          break;
+        default:
+          console.error('An error has been occurred');
+          break;
+      }
+    }
   });
 }, false);

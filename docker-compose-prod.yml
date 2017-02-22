@@ -1,0 +1,18 @@
+version: '2'
+
+services:
+  app:
+    build: .
+    enviroment:
+      - VIRTUAL_HOST=www.dpstudios.es,dpstudios.es
+      - VIRTUAL_PROTO=http
+      - LETSENCRYPT_HOST=www.dpstudios.es,dpstudios.es
+      - LETSENCRYPT_EMAIL=daniel@dpstudios.es
+    expose:
+      - "3000"
+    networks:
+      - nginx-proxy
+
+networks:
+  nginx-proxy:
+    external: true
