@@ -90,7 +90,11 @@ func main() {
 	http.HandleFunc("/send-mail", SendMailHandler)
 
 	// Serve static files
-	fs := http.FileServer(http.Dir("static"))
+	staticFilesPath := os.Getenv("STATIC_FILES_PATH")
+	if staticFilesPath == "" {
+		staticFilesPath = "static"
+	}
+	fs := http.FileServer(http.Dir(staticFilesPath))
 	http.Handle("/", fs)
 
 	// Start server

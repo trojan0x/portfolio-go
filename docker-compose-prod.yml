@@ -8,6 +8,7 @@ services:
       - VIRTUAL_PROTO=http
       - LETSENCRYPT_HOST=www.dpstudios.es,dpstudios.es
       - LETSENCRYPT_EMAIL=daniel@dpstudios.es
+      - STATIC_FILES_PATH=/go/src/github.com/danybmx/portfolio-go/static
     expose:
       - "3000"
     networks:
