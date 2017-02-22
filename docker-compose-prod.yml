@@ -3,7 +3,7 @@ version: '2'
 services:
   app:
     build: .
-    enviroment:
+    environment:
       - VIRTUAL_HOST=www.dpstudios.es,dpstudios.es
       - VIRTUAL_PROTO=http
       - LETSENCRYPT_HOST=www.dpstudios.es,dpstudios.es
