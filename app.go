@@ -27,7 +27,7 @@ func SendMailHandler(w http.ResponseWriter, r *http.Request) {
 	var err error
 
 	if r.Method == "POST" {
-		// Check captcha
+		// Check CAPTCHA 
 		reCaptchaRequestBody := url.Values{}
 		reCaptchaRequestBody.Add("secret", "6Lc-chYUAAAAAIrehupr7j3iS8JDFZ3vHfFOSnvt")
 		reCaptchaRequestBody.Add("response", r.PostFormValue("g-recaptcha-response"))
